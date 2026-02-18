@@ -1,0 +1,233 @@
+---
+title: "BIO331 -- Lab 03: Control flow"
+subtitle: "Simple control flow in R"
+author: Dee Ruttenberg (Adapted from Scott Wolf, Michelle White)
+date: Feb. 4, 2026
+output: html_document
+---
+
+
+# Pre work
+
+Make sure that you are comfortable with git and have a basic understanding of how to run code in R. If you need a refresher, please see the [Lab 2](https://deeruttenberg.github.io/#labs) materials and external resources. Feel free to ask any remaining questions.
+
+Before coming to precept, you should have:
+
+* Accepted the assignment [intro-to-control-flow](https://classroom.github.com/a/kLOR3dvS) from GitHub Classrooms.
+* A working installation of RStudio or VS Code
+* A git repository for the precept. This git repository should be created using the precept assignment link. 
+* A draft branch in your assignment repository. ***Do not work in main!***
+
+# Precept 2 -- Introduction to Control Flow in R
+
+Control flows in R determine the sequence in which the instructions are executed. This ability to control the flow of execution allows for more complex and flexible scripts. 
+
+## Basic conditionals
+
+In R, the basic conditional statements are `if`, `else`, and `else if`. 
+
+```{r}
+set.seed(42) # This ensures that the random number generator will produce the same results each time the script is run
+x <- runif(1, 0, 10)
+
+if (x > 5) {
+     print("x is greater than 5")
+
+} else if (x < 5) {
+     print("x is less than 5")
+
+} else {
+     print("x is equal to 5")
+}
+```
+
+## Loops
+
+There are two primary loops in R - `for` and `while`. `for` loops are used when the number of iterations is known, while `while` loops are used when the number of iterations is unknown and require an iterator variable.
+
+**For loop**
+#print(product)
+#}
+
+#}
+#}
+#for (i in 1:5) {
+
+}
+#```
+
+**While loop**
+number<-50
+counter<-0  
+while (number>=20){
+  number<-number * 0.95
+  counter<-counter +1 
+}
+print (counter) 
+ 
+
+## Functions
+
+Functions are blocks of reusable code. Functions are used to perform a specific task and are only run when they are called.
+
+```{r}
+calculate_sum <- function(a, b) { # a and b are the function arguments
+     return(a + b)
+}
+
+calculate_sum(3, 4) # this is where we call the function
+```
+
+### Scoping
+
+Scoping refers to the visibility of variables. In R, there are two main scopes: global and local. Global variables are accessible throughout the entire script, while local variables are only available within the function or script in which they are defined.
+
+```{r}
+global_var <- 10
+
+function_with_scope <- function() { 
+  local_var <- 5
+  return(global_var + local_var) # function_with_scope() has access to global_var even though it is not defined in the function
+}
+
+function_with_scope()
+```
+
+### Recursion
+
+A function that calls itself is known as a recursive function. Recursive function are only used for very specific problems, such as when you need to solve a problem that can be broken down into smaller, similar problems.
+
+```{r}
+factorial <- function(n) {
+     if (n <= 1) {
+          return(1)
+
+     } else {
+     return(n * factorial(n-1)) # this is where factorial() calls itself
+     }
+}
+
+factorial(5)
+```
+
+# Submission
+
+For this precept, please submit a single R file containing the answers to the exercises found here. Please make intermediate commits in your development branch as you write to get in the habit of committing often. You should commit at least once for each question. Finally, you should submit a pull request and merge your development branch into your main branch. As a reminder, once you merge this PR, your assignment will be marked as complete and may be graded.
+
+## Exercises
+
+
+### 1. Conditionals (final version i did)
+
+Consider a vector containing the values: 91, 77, 68, 65, 89, 72, 85, 90, 80.
+
+**Tip**: A vector is a way of storing data, in this case, ordered integers:
+
+```{r}
+grades <- c(91, 77, 68, 65, 89, 72, 85, 90, 80)
+grade_tags<- c(91, 77, 68, 65, 89, 72, 85, 90, 80)
+if(grade [i]>90) {
+grade_tags("Excellent")
+ifelse(grade[i] <=90 & grades[i]>=8-) {
+grade_tags ("Good")
+else (grade [i]<80){
+grade_tags("Fair")
+}
+  }
+grade_tags
+
+      
+      
+      
+```
+
+### 2. For
+
+Create a sequence of numbers from 3 to 15 (included). Using a for loop, compute the cumulative product of these numbers and print the results.
+
+for (n in 3:15)
+print (n)
+product <-1 
+for (n in 3:15) { 
+(product<-product*n )
+ print (product)
+}
+#This above keeps coming out as 1 i need help...
+
+
+
+
+
+### 3. While
+
+Starting with a number 50, decrease it by 5% in every iteration using a while loop. Continue the iterations until the number goes below 20. Return and print the number of iterations it took.
+#while loop tells you when to keep going, then it will eventually stop
+
+n<-50 
+counter<-50 
+iteration=0
+while(counter>=20){
+counter<-counter*0.95
+iteration =iteration+1
+print(iteration)
+print(counter)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### 4. Functions with conditionals and loops
+
+
+Write a function named series_sum that accepts two arguments: a start value 's' and an end value 'e'. The function should sum all numbers from 's' to 'e'. However, if a number in the series is divisible by 3, it should be skipped. 
+
+**Tip**: The modulo operator (`%%` in R) returns the remainder of the division of two numbers.
+ 
+```{r}
+series_sum <- function(s,e) {
+count=0
+list = c(s:e)
+for(i in list){
+  if(i%%3 != 0){
+    count<-count+i
+  }
+}
+return(count)
+}
+series_sum(1,5)
+```
+
+
+### 5. Recursive Functions
+
+The Lucas series is a sequence of numbers similar to the Fibonacci series but starts with 2 and 1 instead of 0 and 1. Write a recursive function `lucas` that computes the nth value of the Lucas series.
+#its a way to make a loop? 
+
+```{r}
+lucas<-function(n) { 
+if (n<=0){ 
+return (2) 
+} 
+else if (n<=1){ 
+  return(1)
+  }
+}else{
+return(lucas(n-1)+lucas(n-2))
+}
+} 
+
+lucas (5)
+```
